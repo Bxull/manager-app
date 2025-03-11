@@ -1,0 +1,32 @@
+galijz:
+  services:
+    catalogue:
+      uri: http://localhost:8081
+      registration-id: keycloak
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5434/manager
+    username: manager
+    password: manager
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8082/realms/galijz
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: manager-app
+            client-secret: VCTGIUpXVMoWVFXkD3sYMwmKJpp0Y2jT
+            scope:
+              - openid
+              - view_catalogue
+              - edit_catalogue
+              - microprofile-jwt
+logging:
+  level:
+    com.galijz.manager_app.rest.ProductsRestClient: DEBUG
+    root: info
+    com.galijz.manager_app.security: DEBUG

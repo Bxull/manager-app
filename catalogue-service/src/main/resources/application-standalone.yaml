@@ -1,0 +1,27 @@
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/galijz
+    user:
+      name: catalogue_service_user
+      password: '{noop}password'
+      roles:
+        - SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5433/catalogue
+    username: postgres
+    password: 3478
+  flyway:
+    enabled: true
+    schemas:
+      - public
+      - catalogue
+  jpa:
+    show-sql: true
+logging:
+  level:
+    sql: info
